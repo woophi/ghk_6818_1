@@ -1,5 +1,3 @@
-import { LS, LSKeys } from '../ls';
-
 declare global {
   interface Window {
     dataLayer: unknown[];
@@ -8,11 +6,7 @@ declare global {
 }
 
 type Payload = {
-  autopayments: 1 | 0;
-  limit: 1 | 0;
-  limit_sum: number;
-  insurance: 1 | 0;
-  email: 1 | 0;
+  engage_price: number;
 };
 
 export const sendDataToGA = async (payload: Payload) => {
@@ -23,11 +17,11 @@ export const sendDataToGA = async (payload: Payload) => {
     }-${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
 
     await fetch(
-      'https://script.google.com/macros/s/AKfycbxcHgrbrpJDGqapkLM5baYBX40Q4CotD5cxxU-4_mdpm86bxbBXSESz1AkW_G-ubZWb/exec',
+      'https://script.google.com/macros/s/AKfycbyTAzHkRkE6X-Rwyc-BPRLIK2E52gErSnYcsox-E9JxLII6vBdzXYeEnBK5em_3Rpt8/exec',
       {
         redirect: 'follow',
         method: 'POST',
-        body: JSON.stringify({ date, ...payload, variant: 'variant1', id: LS.getItem(LSKeys.UserId, 0) }),
+        body: JSON.stringify({ date, ...payload, variant: 'variant1' }),
         headers: {
           'Content-Type': 'text/plain;charset=utf-8',
         },
